@@ -14,7 +14,6 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
@@ -35,6 +34,18 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
       PORT: 4000
+  frontend:
+    build:
+      context: ../frontend
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    env_file:
+      - ../frontend/.env
 
 volumes:
   pgdata:
