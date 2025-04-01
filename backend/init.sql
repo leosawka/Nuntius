@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS news (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  image_url TEXT,
+  author TEXT NOT NULL,
+  date DATE NOT NULL
+);
