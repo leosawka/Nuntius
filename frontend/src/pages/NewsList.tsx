@@ -31,16 +31,6 @@ const NewsList = () => {
 
   return (
     <Container sx={{ py: 4 }}>
-      <Box display="flex" justifyContent="flex-end" sx={{ mb: 2 }}>
-        <Button
-          variant="contained"
-          component={Link}
-          to="/create"
-          sx={{ textTransform: 'none' }}
-        >
-          + Create News
-        </Button>
-      </Box>
       <Box
         sx={{
           display: 'flex',

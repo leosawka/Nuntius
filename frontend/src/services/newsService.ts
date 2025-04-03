@@ -24,3 +24,13 @@ export const getNewsById = async (id: number): Promise<NewsItem> => {
 export const createNews = async (newsData: Omit<NewsItem, 'id'>): Promise<void> => {
   await axios.post(`${API_BASE_URL}/news`, newsData)
 }
+
+export const updateNews = async (id: number, data: NewsItem): Promise<NewsItem> => {
+  const response = await axios.put(`${API_BASE_URL}/news/${id}`, data)
+  return response.data
+}
+
+
+export const deleteNews = async (id: number): Promise<void> => {
+  await axios.delete(`${API_BASE_URL}/news/${id}`)
+}

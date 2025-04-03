@@ -11,3 +11,10 @@ export const getNewsById = async (id) => {
 export const createNews = async (newsData) => {
     await axios.post(`${API_BASE_URL}/news`, newsData);
 };
+export const updateNews = async (id, data) => {
+    const response = await axios.put(`${API_BASE_URL}/news/${id}`, data);
+    return response.data;
+};
+export const deleteNews = async (id) => {
+    await axios.delete(`${API_BASE_URL}/news/${id}`);
+};

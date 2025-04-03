@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { getNewsById, NewsItem } from '../services/newsService'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { getNewsById, NewsItem, deleteNews } from '../services/newsService'
 import {
   Container,
   Typography,
@@ -35,6 +35,8 @@ const NewsDetail = () => {
     fetchNews()
   }, [id])
 
+  const navigate = useNavigate()
+
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" mt={10}>
@@ -56,9 +58,23 @@ const NewsDetail = () => {
     )
   }
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this news article?')
+    if (!confirmDelete || !id) return
+
+    try {
+      await deleteNews(Number(id))
+      alert('News deleted successfully!')
+      navigate('/')
+    } catch (error) {
+      console.error('Failed to delete news:', error)
+      alert('An error occurred while deleting the news.')
+    }
+  }
+
   return (
     <Box sx={{ display: 'flex', justifySelf: 'center', py: 4 }}>
-      <Card sx={{ width: '95vw'}}>
+      <Card sx={{ width: '95vw' }}>
         <Box sx={{ px: 3, pt: 2 }}>
           <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -95,16 +111,16 @@ const NewsDetail = () => {
             }}
           >
             <Button
-              sx={{
-                transition: 'transform 0.2s',
-                '&:hover': { transform: 'scale(1.02)', boxShadow: 6 }
-              }}
+              component={Link}
+              to={`/edit/${news.id}`}
               variant="outlined"
               color="primary"
+              sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.02)', boxShadow: 6 } }}
             >
               Edit
             </Button>
             <Button
+              onClick={handleDelete}
               sx={{
                 transition: 'transform 0.2s',
                 '&:hover': { transform: 'scale(1.02)', boxShadow: 6 }
@@ -118,7 +134,7 @@ const NewsDetail = () => {
         </CardContent>
       </Card>
     </Box>
-  )  
+  )
 }
 
 export default NewsDetail

@@ -100,6 +100,12 @@ npm run preview      # Preview production build
   - Snackbar confirmation on success
   - Cancel button with unsaved changes confirmation
   - Exit warning when there are unsaved changes
+- Edit News form with:
+  - Reused validation logic
+  - Snackbar confirmation on update
+- Delete News button with confirmation prompt
+- Global banner/header with logo and Create New button
+- Banner hidden in Create News view
 
 ---
 
@@ -111,5 +117,5 @@ npm run preview      # Preview production build
 - [x] Frontend with React + Vite
 - [x] Create News flow
 - [x] Navigation guard for unsaved changes
-- [ ] Edit/Delete functionality
-- [ ] Deployment
+- [x] Edit/Delete functionality
+- [x] Deployment
