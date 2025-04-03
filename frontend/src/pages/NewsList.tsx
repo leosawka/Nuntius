@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Box,
   Container,
   Card,
   CardContent,
   CardMedia,
-  Typography
+  Typography,
+  Button
 } from '@mui/material'
 import { getAllNews, NewsItem } from '../services/newsService'
 
@@ -29,13 +31,51 @@ const NewsList = () => {
 
   return (
     <Container sx={{ py: 4 }}>
-      <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center'}}>
+      <Box display="flex" justifyContent="flex-end" sx={{ mb: 2 }}>
+        <Button
+          variant="contained"
+          component={Link}
+          to="/create"
+          sx={{ textTransform: 'none' }}
+        >
+          + Create News
+        </Button>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 3,
+        }}
+      >
         {news.map((item) => (
-          <Box key={item.id} sx={{flex: '1 1 300px', maxWidth: '400px', minWidth: '280px'}}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              {item.image_url && (<CardMedia component="img" height="200" image={item.image_url} alt={item.title}/>)}
+          <Box
+            key={item.id}
+            sx={{
+              flex: '1 1 300px',
+              minWidth: '280px',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Card sx={{ width: '100vw', display: 'flex', flexDirection: 'column' }}>
+              {item.image_url && (
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={item.image_url}
+                  alt={item.title}
+                />
+              )}
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  component={Link}
+                  to={`/news/${item.id}`}
+                  sx={{ textDecoration: 'none', color: 'inherit' }}
+                >
                   {item.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">

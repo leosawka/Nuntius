@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/pages/newslist.tsx","./src/services/newsservice.ts"],"version":"5.7.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/hooks/useunsavedchangeswarning.ts","./src/pages/createnews.tsx","./src/pages/newsdetail.tsx","./src/pages/newslist.tsx","./src/services/newsservice.ts"],"version":"5.7.3"}
