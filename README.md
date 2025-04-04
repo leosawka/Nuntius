@@ -106,6 +106,7 @@ npm run preview      # Preview production build
 - Delete News button with confirmation prompt
 - Global banner/header with logo and Create New button
 - Banner hidden in Create News view
+- Search bar with real-time filtering by title or author
 
 ---
 
