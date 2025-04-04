@@ -4,6 +4,12 @@ export const getAllNews = async () => {
     const response = await axios.get(`${API_BASE_URL}/news`);
     return response.data;
 };
+export async function searchNews(term) {
+    const response = await fetch(`${API_BASE_URL}/news/search?term=${encodeURIComponent(term)}`);
+    if (!response.ok)
+        throw new Error('Failed to search news');
+    return response.json();
+}
 export const getNewsById = async (id) => {
     const response = await axios.get(`${API_BASE_URL}/news/${id}`);
     return response.data;

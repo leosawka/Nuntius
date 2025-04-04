@@ -16,6 +16,12 @@ export const getAllNews = async (): Promise<NewsItem[]> => {
   return response.data
 }
 
+export async function searchNews(term: string): Promise<NewsItem[]> {
+  const response = await fetch(`${API_BASE_URL}/news/search?term=${encodeURIComponent(term)}`)
+  if (!response.ok) throw new Error('Failed to search news')
+  return response.json()
+}
+
 export const getNewsById = async (id: number): Promise<NewsItem> => {
   const response = await axios.get(`${API_BASE_URL}/news/${id}`)
   return response.data
